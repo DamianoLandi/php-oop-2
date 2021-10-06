@@ -44,7 +44,75 @@ class Book extends Product{
 
         parent::__construct($_name, $_price, $_weigth, $_availability);
     }
+
+    public function getAuthor(){
+        return $this->author;
+    }
+
+    public function getIsbn(){
+        return $this->isbn;
+    }
+
+    public function getPages(){
+        return $this->pages;
+    }
+
+    public function getGenre(){
+        return $this->genre;
+    }
+};
+
+class User{
+    protected $name;
+    protected $surname;
+    protected $age;
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getSurname(){
+        return $this->surname;
+    }
+
+    public function getAge(){
+        return $this->age;
+    }
+
+    protected function __construct($_name, $_surname, $_age){
+        $this->name = $_name;
+        $this->surname = $_surname;
+        $this->age = $_age;
+    }
+};
+
+class Premium extends User{
+    protected $level;
+    protected $discount;
+
+    protected function __construct($_name, $_surname, $_age, $_level, $_discount){
+        $this->level = $_level;
+        $this->discount = $_discount;
+
+        parent::__construct($_name, $_surname, $_age);
+    }
+
+    public function getDiscount(){
+        if ($this->level == 1){
+            $this->discount = 20;
+        }elseif ($this->level == 2){
+            $this->discount = 30;
+        }elseif($this->level == 3){
+            $this->discount = 50;
+        }else{
+            $this->discount = "Il livello utente non è valido";
+        }
+
+        return $this->discount;
+    }
+
 }
+
 
 
 
